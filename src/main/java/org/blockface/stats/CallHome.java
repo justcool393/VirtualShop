@@ -25,17 +25,24 @@
 
 package org.blockface.stats;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.util.config.Configuration;
-
 import java.io.File;
 import java.net.URL;
 import java.util.UUID;
 
-public class CallHome{
+import org.blockface.virtualshop.VirtualShop;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.plugin.Plugin;
 
-    private static Configuration cfg=null;
+public class CallHome{
+    
+    public static VirtualShop plugin;
+    public CallHome(VirtualShop virtualshop){
+        cfg = virtualshop.getConfig();
+        plugin = virtualshop;
+    }
+
+    private static ConfigurationSection cfg=null;
 
     public static void load(Plugin plugin) {
         if(cfg==null) if(!verifyConfig()) return;
@@ -52,11 +59,9 @@ public class CallHome{
             System.out.println("BukkitStats is initializing for the first time. To opt-out check plugins/stats");
             ret = false;}
 
-        cfg=new Configuration(config);
-        cfg.load();
         cfg.getBoolean("opt-out", false);
         cfg.getString("hash", UUID.randomUUID().toString());
-        cfg.save();
+        plugin.saveConfig();
 
         if(!config.exists()) {
             System.out.println("BukkitStats failed to save configuration.");

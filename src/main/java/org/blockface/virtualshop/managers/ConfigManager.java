@@ -1,16 +1,16 @@
 package org.blockface.virtualshop.managers;
 
-import org.bukkit.util.config.Configuration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
 public class ConfigManager
 {
-    private static Configuration config;
+    private static ConfigurationSection config;
 
     public static void Initialize(Plugin plugin)
     {
-        config = plugin.getConfiguration();
-        config.load();
+        config = plugin.getConfig();
+        plugin.reloadConfig();
         BroadcastOffers();
         UsingMySQL();
         MySQLUserName();
@@ -19,7 +19,7 @@ public class ConfigManager
         MySQLport();
         MySQLPassword();
         getPort();
-        config.save();
+        plugin.saveConfig();
     }
 
 	public static Boolean BroadcastOffers()

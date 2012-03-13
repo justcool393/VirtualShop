@@ -1,12 +1,13 @@
 package org.blockface.virtualshop.events;
 
 import org.blockface.virtualshop.managers.EconomyManager;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.event.server.ServerListener;
 
-public class ServerEvents extends ServerListener {
+public class ServerEvents implements Listener {
 
-    @Override
+    @EventHandler
     public void onPluginEnable(PluginEnableEvent event) {
         EconomyManager.Initialize(event.getPlugin());
     }

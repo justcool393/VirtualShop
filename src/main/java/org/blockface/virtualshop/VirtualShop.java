@@ -38,7 +38,7 @@ public class VirtualShop extends JavaPlugin {
         //Call Home
         CallHome.load(this);
 
-        pm.registerEvent(Event.Type.PLUGIN_ENABLE, new ServerEvents(), Event.Priority.Normal, this);
+        pm.registerEvents(new ServerEvents(), this);
     }
 
     @Override
