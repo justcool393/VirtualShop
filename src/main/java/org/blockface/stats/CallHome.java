@@ -68,7 +68,12 @@ public class CallHome{
         cfg = YamlConfiguration.loadConfiguration(config);
         cfg.getBoolean("opt-out", false);
         cfg.getString("hash", UUID.randomUUID().toString());
-
+        try {
+            cfg.save(config);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         if(!config.exists()) {
             System.out.println("BukkitStats failed to save configuration.");
             return false;
