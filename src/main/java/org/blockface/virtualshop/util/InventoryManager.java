@@ -2,18 +2,19 @@ package org.blockface.virtualshop.util;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.material.MaterialData;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class InventoryManager {
-    private final Inventory _inv;
+    private final PlayerInventory _inv;
     private final Player _player;
     private final Location _loc;
     
-    public InventoryManager(final Inventory inv) {
+    public InventoryManager(final PlayerInventory inv) {
         _inv = inv;
         _player = null;
         _loc = null;
@@ -25,13 +26,13 @@ public class InventoryManager {
     	_loc = null;
     }
     
-    public InventoryManager(final Inventory inv, final Player player) {
+    public InventoryManager(final PlayerInventory inv, final Player player) {
     	_inv = inv;
     	_player = player;
     	_loc = null;
     }
     
-    public InventoryManager(final Inventory inv, final Location loc) {
+    public InventoryManager(final PlayerInventory inv, final Location loc) {
     	_inv = inv;
     	_player = null;
     	_loc = loc;
@@ -88,28 +89,14 @@ public class InventoryManager {
     }
     
     public ItemStack addItem(ItemStack stack) {
-    	int size = _inv.getSize();
+
+        HashMap<Integer, ItemStack> remaining = _inv.addItem(stack);
     	
-    	int amount = stack.getAmount();
-    	int max = stack.getType().getMaxStackSize();
-    	
-    	if(max<1) max = 64;
-    	
-    	for(int i = 0; i<size; i++) {
-    		ItemStack slot = _inv.getItem(i);
-    		
-    		int amt = slot.getAmount();
-    		
-    		if((amt<max)&&(((amt<1)||((stack.getTypeId()==slot.getTypeId())&&(handleData(stack.getData())==handleData(slot.getDurability())))))) {
-    			_inv.setItem(i, new ItemStack(stack.getType(), (((amount+amt)>max) ? (max) : (amount+amt)), stack.getDurability(), handleData(stack.getData())));
-    			
-    			amount -= (((max-amt)<0) ? (0) : (max-amt));
-    		}
-    		
-    		if(amount<=0) break;
+    	if(_player!=null && _loc!=null){
+    	    for(ItemStack derp : remaining.values()){
+    	        _player.getWorld().dropItemNaturally(_loc, derp);
+    	    }
     	}
-    	
-    	if((amount>0)&&((_player!=null)||(_loc!=null))) for(; amount>0; amount -= max) ((_player!=null) ? (_player.getLocation()) : (_loc)).getWorld().dropItemNaturally(((_player!=null) ? (_player.getLocation()) : (_loc)), new ItemStack(stack.getType(), ((amount>max) ? (max) : (amount)), stack.getDurability(), handleData(stack.getData()))); else return new ItemStack(stack.getType(), amount, stack.getDurability(), handleData(stack.getData()));
     	
     	return new ItemStack(stack.getType(), 0, stack.getDurability(), handleData(stack.getData()));
     }

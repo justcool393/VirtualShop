@@ -1,6 +1,5 @@
 package org.blockface.virtualshop.commands;
 
-import com.iCo6.IO.Database;
 import org.blockface.virtualshop.Chatty;
 import org.blockface.virtualshop.managers.ConfigManager;
 import org.blockface.virtualshop.managers.DatabaseManager;
@@ -8,12 +7,9 @@ import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.util.InventoryManager;
 import org.blockface.virtualshop.util.ItemDb;
 import org.blockface.virtualshop.util.Numbers;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import java.sql.ResultSet;
 
 
 public class Sell

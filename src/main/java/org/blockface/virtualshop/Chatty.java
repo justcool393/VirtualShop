@@ -1,16 +1,15 @@
 package org.blockface.virtualshop;
 
+import java.util.logging.Logger;
+
 import org.blockface.virtualshop.managers.EconomyManager;
 import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.objects.Transaction;
 import org.blockface.virtualshop.util.ItemDb;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
-import java.util.logging.Logger;
 
 public class Chatty
 {

@@ -1,18 +1,23 @@
 package org.blockface.virtualshop;
 
+import java.io.IOException;
+
 import org.blockface.stats.CallHome;
-import org.blockface.virtualshop.commands.*;
+import org.blockface.virtualshop.commands.Buy;
+import org.blockface.virtualshop.commands.Cancel;
+import org.blockface.virtualshop.commands.Find;
+import org.blockface.virtualshop.commands.Help;
+import org.blockface.virtualshop.commands.Sales;
+import org.blockface.virtualshop.commands.Sell;
+import org.blockface.virtualshop.commands.Stock;
 import org.blockface.virtualshop.events.ServerEvents;
 import org.blockface.virtualshop.managers.ConfigManager;
 import org.blockface.virtualshop.managers.DatabaseManager;
 import org.blockface.virtualshop.util.ItemDb;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.IOException;
 
 public class VirtualShop extends JavaPlugin {
     public void onDisable() {

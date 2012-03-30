@@ -1,6 +1,5 @@
 package org.blockface.virtualshop.commands;
 
-import org.blockface.virtualshop.Chatty;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 

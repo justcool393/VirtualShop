@@ -9,8 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.imageio.metadata.IIOMetadata;
-
 public class Cancel {
 
     public static void Execute(CommandSender sender, String[] args)
