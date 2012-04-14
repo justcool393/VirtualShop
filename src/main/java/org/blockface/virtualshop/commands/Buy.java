@@ -32,7 +32,7 @@ public class Buy {
         }
 		if(args.length < 2)
 		{
-			Chatty.SendError(sender, "Proper usage is /buy <amount> <item>");
+			Chatty.SendError(sender, "Proper usage is /buy <amount> <item> <maxprice (optional)>");
 			return;
 		}
 		int amount = Numbers.ParseInteger(args[0]);

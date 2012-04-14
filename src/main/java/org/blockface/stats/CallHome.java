@@ -59,7 +59,11 @@ public class CallHome{
         if(!config.exists()) {
             System.out.println("BukkitStats is initializing for the first time. To opt-out check plugins/stats");
             ret = false;
+            File configpath = new File("plugins/stats/");
             try {
+                if(!configpath.exists()){
+                    configpath.mkdir();
+                }
                 config.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -102,6 +106,7 @@ class CallTask implements Runnable {
     }
 
     private void postUrl() throws Exception {
+        /*
         String url = String.format("http://usage.blockface.org/update.php?name=%s&build=%s&plugin=%s&port=%s&hash=%s&bukkit=%s",
                 plugin.getServer().getName(),
                 plugin.getDescription().getVersion().replaceAll(" ", "%20"),
@@ -110,6 +115,7 @@ class CallTask implements Runnable {
                 hash,
                 Bukkit.getVersion());
         new URL(url).openConnection().getInputStream();
+        */
     }
 }
 

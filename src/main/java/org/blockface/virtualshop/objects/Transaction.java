@@ -1,6 +1,5 @@
 package org.blockface.virtualshop.objects;
 
-import org.blockface.virtualshop.Chatty;
 import org.bukkit.inventory.ItemStack;
 
 import java.sql.ResultSet;

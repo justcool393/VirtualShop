@@ -2,7 +2,6 @@ package org.blockface.virtualshop.objects;
 
 import org.bukkit.inventory.ItemStack;
 
-import javax.persistence.Id;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
