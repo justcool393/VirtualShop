@@ -10,9 +10,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <scm>
-    <connection>scm:git:git://github.com/joeto/j2mc-irc/j2mc-irc.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/joeto/j2mc-irc/j2mc-irc.git</developerConnection>
-    <url>s://www.github.com/joeto/j2mc-irc</url>
+    <connection>scm:git:git://github.com/ammaraskar/VirtualShop.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/ammaraskar/VirtualShop.git</developerConnection>
+    <url>s://www.github.com/ammaraskar/VirtualShop</url>
   </scm>
   <repositories>
     <repository>
@@ -43,14 +43,14 @@
     <directory>target</directory>
     <outputDirectory>target/classes</outputDirectory>
     <finalName>${project.artifactId}</finalName>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java/</sourceDirectory>
     <defaultGoal>clean install</defaultGoal>
     
     <resources>
       <resource>
         <targetPath>.</targetPath>
         <filtering>true</filtering>
-        <directory>${basedir}/src/main/java/resources</directory>
+        <directory>${basedir}/src/main/java/resources/</directory>
         <includes>
           <include>plugin.yml</include>
           <include>config.yml</include>
@@ -63,16 +63,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.1</version>
-        <configuration>
-          <archive>
-            <manifestEntries>
-              <Main-Class>Main</Main-Class>
-              <Implementation-Title>j2mc-irc</Implementation-Title>
-              <Implementation-Version>${describe}</Implementation-Version>
-              <Implementation-Vendor>j2</Implementation-Vendor>
-            </manifestEntries>
-          </archive>
-        </configuration>
        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
