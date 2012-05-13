@@ -1,10 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.blockface</groupId>
   <artifactId>VirtualShop</artifactId>
   <version>SNAPSHOT</version>
   <name>VirtualShop</name>
-  <url>http://blockface.org/</url>
+  <url>http://www.github.com/ammaraskar/VirtualShop</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <scm>
+    <connection>scm:git:git://github.com/joeto/j2mc-irc/j2mc-irc.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/joeto/j2mc-irc/j2mc-irc.git</developerConnection>
+    <url>s://www.github.com/joeto/j2mc-irc</url>
+  </scm>
   <repositories>
     <repository>
       <id>bukkit-repo</id>
@@ -15,42 +24,6 @@
       <url>http://ci.milkbowl.net/plugin/repository/everything/</url>
     </repository>
   </repositories>
-  <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
-  <build>
-    <directory>target</directory>
-    <outputDirectory>target/classes</outputDirectory>
-    <finalName>${project.artifactId}</finalName>
-    <sourceDirectory>src/main/java</sourceDirectory>
-    <defaultGoal>clean install</defaultGoal>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.0.2</version>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
-      </plugin>
-    </plugins>
-    <resources>
-      <resource>
-        <targetPath>.</targetPath>
-        <filtering>true</filtering>
-        <directory>${basedir}/src/main/resources/</directory>
-        <includes>
-          <include>plugin.yml</include>
-          <include>items.csv</include>
-          <include>config.yml</include>
-        </includes>
-      </resource>
-    </resources>
-  </build>
   <dependencies>
     <dependency>
       <groupId>org.bukkit</groupId>
@@ -64,4 +37,53 @@
       <version>1.2.16-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  
+  <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
+  <build>
+    <directory>target</directory>
+    <outputDirectory>target/classes</outputDirectory>
+    <finalName>${project.artifactId}</finalName>
+    <sourceDirectory>src</sourceDirectory>
+    <defaultGoal>clean install</defaultGoal>
+    
+    <resources>
+      <resource>
+        <targetPath>.</targetPath>
+        <filtering>true</filtering>
+        <directory>${basedir}/src/main/java/resources</directory>
+        <includes>
+          <include>plugin.yml</include>
+          <include>config.yml</include>
+          <include>items.csv</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Main-Class>Main</Main-Class>
+              <Implementation-Title>j2mc-irc</Implementation-Title>
+              <Implementation-Version>${describe}</Implementation-Version>
+              <Implementation-Vendor>j2</Implementation-Vendor>
+            </manifestEntries>
+          </archive>
+        </configuration>
+       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <inherited>true</inherited>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
