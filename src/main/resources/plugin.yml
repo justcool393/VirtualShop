@@ -1,9 +1,10 @@
-﻿author: SwearWord
+author: SwearWord
 description: Allows players to buy and sell goods on a VirtualShop.
-main: org.blockface.virtualshop.${project.name}
-name: ${project.name}
+main: org.blockface.virtualshop.VirtualShop
+name: VirtualShop
 url: http://blockface.org/
-version: b${build.number}
+version: b115
+depend: [Vault]
 commands:
     buy:
         description: Buy goods for sale on the VirtualShop.

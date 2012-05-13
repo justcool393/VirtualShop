@@ -23,7 +23,7 @@ public class ItemDb
 		if (!file.exists())
 		{
 			file.createNewFile();
-			InputStream res = ItemDb.class.getResourceAsStream("/src/main/resources/items.csv");
+			InputStream res = ItemDb.class.getResourceAsStream("/items.csv");
 			FileWriter tx = new FileWriter(file);
 			try
 			{

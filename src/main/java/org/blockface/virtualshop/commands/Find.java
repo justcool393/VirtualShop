@@ -1,6 +1,7 @@
 package org.blockface.virtualshop.commands;
 
 import org.blockface.virtualshop.Chatty;
+import org.blockface.virtualshop.VirtualShop;
 import org.blockface.virtualshop.managers.DatabaseManager;
 import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.util.ItemDb;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class Find
 {
-    public static void Execute(CommandSender sender, String[] args)
+    public static void Execute(CommandSender sender, String[] args, VirtualShop plugin)
     {
         if(!sender.hasPermission("virtualshop.find"))
         {

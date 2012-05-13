@@ -1,6 +1,7 @@
 package org.blockface.virtualshop.commands;
 
 import org.blockface.virtualshop.Chatty;
+import org.blockface.virtualshop.VirtualShop;
 import org.blockface.virtualshop.managers.DatabaseManager;
 import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.util.InventoryManager;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class Cancel {
 
-    public static void Execute(CommandSender sender, String[] args)
+    public static void Execute(CommandSender sender, String[] args, VirtualShop plugin)
     {
         if(!(sender instanceof Player))
         {

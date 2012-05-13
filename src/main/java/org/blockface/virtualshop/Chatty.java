@@ -2,22 +2,20 @@ package org.blockface.virtualshop;
 
 import java.util.logging.Logger;
 
-import org.blockface.virtualshop.managers.EconomyManager;
 import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.objects.Transaction;
 import org.blockface.virtualshop.util.ItemDb;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 public class Chatty
 {
     private static String prefix;
-    private static Plugin plugin;
+    private static VirtualShop plugin;
 	private static Logger logger;
 
-    public static void Initialize(Plugin p)
+    public static void Initialize(VirtualShop p)
     {
 		logger = Logger.getLogger("minecraft");
         plugin = p;
@@ -93,7 +91,7 @@ public class Chatty
 
 	public static String FormatPrice(double price)
 	{
-		return ChatColor.YELLOW + EconomyManager.getMethod().format(price) + ChatColor.WHITE;
+		return ChatColor.YELLOW + VirtualShop.econ.format(price) + ChatColor.WHITE;
 	}
 
 	public static String FormatBuyer(String buyer)

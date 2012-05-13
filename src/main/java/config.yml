@@ -1,8 +1,0 @@
-broadcast-offers: true
-using-MySQL: false
-MySQL:
-  username: derp
-  password: hurp
-  host: localhost
-  database: minecraft
-  port: 3306

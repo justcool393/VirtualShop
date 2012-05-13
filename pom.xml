@@ -8,16 +8,20 @@
   <repositories>
     <repository>
       <id>bukkit-repo</id>
-      <name>Bukkit</name>
-      <url>http://repo.bukkit.org/artifactory/repo</url>
+      <url>http://repo.bukkit.org/content/groups/public</url>
     </repository>
     <repository>
-      <id>blockface</id>
-      <name>Blockface</name>
-      <url>http://repojk.org/repository</url>
+      <id>milkbowl-repo</id>
+      <url>http://ci.milkbowl.net/plugin/repository/everything/</url>
     </repository>
   </repositories>
+  <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
   <build>
+    <directory>target</directory>
+    <outputDirectory>target/classes</outputDirectory>
+    <finalName>${project.artifactId}</finalName>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <defaultGoal>clean install</defaultGoal>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -32,18 +36,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.3.1</version>
-        <executions>
-          <execution>
-            <id>Publish</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/bin/</outputDirectory>
-              <finalName>${project.name}</finalName>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
     <resources>
@@ -54,6 +46,7 @@
         <includes>
           <include>plugin.yml</include>
           <include>items.csv</include>
+          <include>config.yml</include>
         </includes>
       </resource>
     </resources>
@@ -61,52 +54,14 @@
   <dependencies>
     <dependency>
       <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <artifactId>craftbukkit</artifactId>
+      <version>[1.2.5-R1.0,)</version>
       <type>jar</type>
-      <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.nijiko</groupId>
-      <artifactId>iCo4</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>cosine.boseconomy</groupId>
-      <artifactId>BOSEconomy7</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.nijiko</groupId>
-      <artifactId>iCo5</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.nijiko</groupId>
-      <artifactId>iCo6</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.earth2me</groupId>
-      <artifactId>Essentials</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>me.ashtheking</groupId>
-      <artifactId>MultiCurrency</artifactId>
-      <version>1.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
+      <groupId>net.milkbowl.vault</groupId>
+      <artifactId>Vault</artifactId>
+      <version>1.2.16-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

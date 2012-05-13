@@ -1,9 +1,8 @@
 package org.blockface.virtualshop.commands;
 
-import com.LRFLEW.register.payment.Method;
 import org.blockface.virtualshop.Chatty;
+import org.blockface.virtualshop.VirtualShop;
 import org.blockface.virtualshop.managers.DatabaseManager;
-import org.blockface.virtualshop.managers.EconomyManager;
 import org.blockface.virtualshop.objects.Offer;
 import org.blockface.virtualshop.objects.Transaction;
 import org.blockface.virtualshop.util.InventoryManager;
@@ -18,7 +17,7 @@ import java.util.List;
 
 public class Buy {
 
-    public static void Execute(CommandSender sender, String[] args)
+    public static void Execute(CommandSender sender, String[] args, VirtualShop plugin)
     {
 		if(!(sender instanceof Player))
 		{
@@ -60,7 +59,6 @@ public class Buy {
 			return;
 		}
 		Player player = (Player)sender;
-        Method.MethodAccount account = EconomyManager.getMethod().getAccount(player.getName());
         int bought = 0;
         double spent = 0;
         InventoryManager im = new InventoryManager(player);
@@ -79,9 +77,9 @@ public class Buy {
                 double cost = o.price * canbuy;
 
                 //Revise amounts if not enough money.
-                if(!account.hasEnough(cost))
+                if(!plugin.hasEnough(player.getName(), cost))
                 {
-                    canbuy = (int)(account.balance() / o.price);
+                    canbuy = (int)(VirtualShop.econ.getBalance(player.getName()) / o.price);
                     cost = canbuy*o.price;
                     if(canbuy < 1)
                     {
@@ -91,8 +89,8 @@ public class Buy {
                 }
                 bought += canbuy;
                 spent += cost;
-                account.subtract(cost);
-                EconomyManager.getMethod().getAccount(o.seller).add(cost);
+                VirtualShop.econ.withdrawPlayer(player.getName(), cost);
+                VirtualShop.econ.depositPlayer(o.seller, cost);
                 Chatty.SendSuccess(o.seller, Chatty.FormatSeller(player.getName()) + " just bought " + Chatty.FormatAmount(canbuy) + " " + Chatty.FormatItem(args[1]) + " for " + Chatty.FormatPrice(cost));
                 int left = o.item.getAmount() - canbuy;
                 if(left < 1) DatabaseManager.DeleteItem(o.id);
@@ -106,9 +104,9 @@ public class Buy {
                 double cost = canbuy * o.price;
 
                 //Revise amounts if not enough money.
-                if(!account.hasEnough(cost))
+                if(!plugin.hasEnough(player.getName(), cost))
                 {
-                    canbuy = (int)(account.balance() / o.price);
+                    canbuy = (int)(VirtualShop.econ.getBalance(player.getName()) / o.price);
                     cost = canbuy*o.price;
                     if(canbuy < 1)
                     {
@@ -118,8 +116,8 @@ public class Buy {
                 }
                 bought += canbuy;
                 spent += cost;
-                account.subtract(cost);
-                EconomyManager.getMethod().getAccount(o.seller).add(cost);
+                VirtualShop.econ.withdrawPlayer(player.getName(), cost);
+                VirtualShop.econ.depositPlayer(o.seller, cost);
                 Chatty.SendSuccess(o.seller, Chatty.FormatSeller(player.getName()) + " just bought " + Chatty.FormatAmount(canbuy) + " " + Chatty.FormatItem(args[1]) + " for " + Chatty.FormatPrice(cost));
                 int left = o.item.getAmount() - canbuy;
                 DatabaseManager.UpdateQuantity(o.id, left);
