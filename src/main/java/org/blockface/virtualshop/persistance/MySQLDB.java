@@ -57,7 +57,7 @@ public class MySQLDB implements Database
 		}
 		if(!db.checkTable("transactions"))
 		{
-			String query = "create table transactions(`id` integer primary key auto_increment,`damage` integer not null, `buyer` varchar(80) not null,`seller` varchar(80) not null,`item` integer not null, `cost` float not null,`amount` integer not null)";
+			String query = "create table transactions(`id` integer primary key auto_increment,`damage` integer not null, `buyer` varchar(20) not null,`seller` varchar(20) not null,`item` integer not null, `cost` float not null,`amount` integer not null)";
 			db.createTable(query);
 			Chatty.LogInfo("Created transaction table.");
 		}
