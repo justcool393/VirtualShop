@@ -8,6 +8,7 @@ import org.blockface.virtualshop.objects.Transaction;
 import org.blockface.virtualshop.util.InventoryManager;
 import org.blockface.virtualshop.util.ItemDb;
 import org.blockface.virtualshop.util.Numbers;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -34,6 +35,12 @@ public class Buy {
 			Chatty.SendError(sender, "Proper usage is /buy <amount> <item> <maxprice (optional)>");
 			return;
 		}
+        Location loc = ((Player) sender).getLocation();
+        if(VirtualShop.Loc1.getX() < loc.getX() && loc.getX() < VirtualShop.Loc2.getX() && VirtualShop.Loc2.getZ() < loc.getZ() && VirtualShop.Loc1.getZ() > loc.getZ()){
+        }else{
+            Chatty.SendError(sender, "You have to be in the city to buy and sell!");
+            return;
+        }
 		int amount = Numbers.ParseInteger(args[0]);
 		if(amount < 0)
 		{

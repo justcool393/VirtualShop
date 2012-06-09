@@ -14,6 +14,7 @@ import org.blockface.virtualshop.commands.Stock;
 import org.blockface.virtualshop.managers.ConfigManager;
 import org.blockface.virtualshop.managers.DatabaseManager;
 import org.blockface.virtualshop.util.ItemDb;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -22,12 +23,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class VirtualShop extends JavaPlugin {
     
     public static Economy econ = null;
+    public static Location Loc1; 
+    public static Location Loc2;
     
     public void onDisable() {
         DatabaseManager.Close();
     }
 
     public void onEnable() {
+        VirtualShop.Loc1 = new Location(this.getServer().getWorld("world"), 128, 1, 7);
+        VirtualShop.Loc2 = new Location(this.getServer().getWorld("world"), 245, 200, -114);
         if (this.setupEconomy()){
             
         } else {
