@@ -31,7 +31,7 @@ public class VirtualShop extends JavaPlugin {
         if (this.setupEconomy()){
             
         } else {
-            this.getLogger().severe("Vault not found. Shutting down!");
+            this.getLogger().severe("You must have Vault to use. Disabling...");
             this.getServer().getPluginManager().disablePlugin(this);
         }
 		Chatty.Initialize(this);
@@ -40,6 +40,7 @@ public class VirtualShop extends JavaPlugin {
         try {
             ItemDb.load(this.getDataFolder(),"items.csv");
         } catch (IOException e) {
+	    this.getLogger().sever("Could not load items.csv. Is it in the folder?");
             this.getPluginLoader().disablePlugin(this);
             return;
         }
@@ -76,6 +77,7 @@ public class VirtualShop extends JavaPlugin {
         if(label.equalsIgnoreCase("sales")) Sales.Execute(sender, args, this);
         if(label.equalsIgnoreCase("find")) Find.Execute(sender, args, this);
         if(label.equalsIgnoreCase("vs")) Help.Execute(sender, this);
+        if(label.equalsIgnoreCase("virtualshop)) Help.Execute(sender, this);
         return true;
     }
 }
