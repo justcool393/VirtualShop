@@ -30,7 +30,7 @@ public class Chatty
 
     public static void SendError(CommandSender sender, String message)
     {
-        sender.sendMessage(ChatColor.RED + prefix  + message);
+        sender.sendMessage(ChatColor.DARK_RED + prefix  + message);
     }
 
     public static void SendSuccess(CommandSender sender, String message)
