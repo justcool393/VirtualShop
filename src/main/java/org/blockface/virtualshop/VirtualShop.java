@@ -38,11 +38,15 @@ public class VirtualShop extends JavaPlugin {
         ConfigManager.Initialize(this);
         DatabaseManager.Initialize();
         try {
+            ItemDb.load(this.getDataFolder(),"..\Essentials\items.csv");
+        } catch (IOException e) {
+        try {
             ItemDb.load(this.getDataFolder(),"items.csv");
         } catch (IOException e) {
-	    this.getLogger().sever("Could not load items.csv. Is it in the folder?");
+	    this.getLogger().severe("Could not load items.csv. Is it in the folder?");
             this.getPluginLoader().disablePlugin(this);
             return;
+        }
         }
     }
     
@@ -77,7 +81,9 @@ public class VirtualShop extends JavaPlugin {
         if(label.equalsIgnoreCase("sales")) Sales.Execute(sender, args, this);
         if(label.equalsIgnoreCase("find")) Find.Execute(sender, args, this);
         if(label.equalsIgnoreCase("vs")) Help.Execute(sender, this);
-        if(label.equalsIgnoreCase("virtualshop)) Help.Execute(sender, this);
+        if(label.equalsIgnoreCase("virtualshop")) Help.Execute(sender, this);
+        if(label.equalsIgnoreCase("lordscraftshop")) Help.Execute(sender, this);
+        if(label.equalsIgnoreCase("lcshop")) Help.Execute(sender, this);
         return true;
     }
 }
