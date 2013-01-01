@@ -1,5 +1,5 @@
-author: SwearWord
-description: Allows players to buy and sell goods on a VirtualShop.
+authors: [SwearWords, ammaraskar, justcool393]
+description: Allows players to buy and sell goods on a virtual market.
 main: org.blockface.virtualshop.VirtualShop
 name: VirtualShop
 url: http://blockface.org/
@@ -26,6 +26,7 @@ commands:
         usage: /sales [player] [page]
     vs:
         description: Displays help.
+        aliases: [shop, vsinfo, lcshop, lcvs]
         usage: /vs
 permissions:
     virtualshop.sell:
