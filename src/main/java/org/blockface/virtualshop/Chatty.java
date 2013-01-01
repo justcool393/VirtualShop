@@ -19,7 +19,7 @@ public class Chatty
     {
 		logger = Logger.getLogger("minecraft");
         plugin = p;
-        prefix = "[Shop] " + ChatColor.WHITE;
+        prefix = ChatColor.DARK_PURPLE + "[" + ChatColor.GOLD + "LCShop" + ChatColor.DARK_PURPLE + "] " + ChatColor.WHITE;
         LogInfo(plugin.getDescription().getName() + " is loading.");
     }
 
@@ -30,12 +30,12 @@ public class Chatty
 
     public static void SendError(CommandSender sender, String message)
     {
-        sender.sendMessage(ChatColor.DARK_RED + prefix  + message);
+        sender.sendMessage(ChatColor.RED + prefix  + message);
     }
 
     public static void SendSuccess(CommandSender sender, String message)
     {
-        sender.sendMessage(ChatColor.DARK_GREEN + prefix  + message);
+        sender.sendMessage(ChatColor.DARK_AQUA + prefix  + message);
     }
 
     public static Boolean SendSuccess(String sender, String message)
@@ -47,7 +47,7 @@ public class Chatty
 
     public static void SendGlobal(String message)
     {
-        plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + prefix  + message);
+        plugin.getServer().broadcastMessage(prefix  + message);
     }
 
     public static Logger getLogger() {
@@ -61,7 +61,7 @@ public class Chatty
     public static void WrongItem(CommandSender sender, String item)
 	{
 
-		SendError(sender, "What is " + item + "?");
+		SendError(sender, item + " could not be found.");
 	}
 
 	public static void DenyConsole(CommandSender sender)
@@ -71,22 +71,22 @@ public class Chatty
 
 	public static void NumberFormat(CommandSender sender)
 	{
-		SendError(sender, "That is not a proper number.");
+		SendError(sender, "That is not a valid number.");
 	}
 
 	public static String FormatSeller(String seller)
 	{
-		return ChatColor.RED + seller + ChatColor.WHITE;
+		return ChatColor.DARK_AQUA + seller + ChatColor.WHITE;
 	}
 
 	public static String FormatAmount(Integer amount)
 	{
-		return ChatColor.GOLD + amount.toString() + ChatColor.WHITE;
+		return ChatColor.GREEN + amount.toString() + ChatColor.WHITE;
 	}
 
 	public static String FormatItem(String item)
 	{
-		return ChatColor.BLUE + item.toLowerCase() + ChatColor.WHITE;
+		return ChatColor.GOLD + item.toLowerCase() + ChatColor.WHITE;
 	}
 
 	public static String FormatPrice(double price)
